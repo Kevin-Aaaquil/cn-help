@@ -1,1 +1,9 @@
-Hi bachho, iss baar curl nahi chalega
+^
+^ To download output into a file instead of viewing it on terminal use the following command:
+^
+^ curl cd.cheeez.xyz/lexical -o lexical.c
+^
+^ This will download the content of the file into a file named client.py
+
+$ HELP -> curl cd.cheeez.xyz/help
+
