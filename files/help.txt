@@ -7,3 +7,6 @@
 
 $ HELP -> curl cd.cheeez.xyz/help
 
+# Lexical Analyzer -> curl cd.cheeez.xyz/lexical
+* First and Follow -> curl cd.cheeez.xyz/ff
+

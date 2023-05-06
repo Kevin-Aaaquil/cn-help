@@ -23,6 +23,11 @@ import fs from "fs";
     res.send(data);
   });
 
+  app.get("/ff", (req, res) => {
+    const data = fs.readFileSync("./files/firstFollow.c", "utf8");
+    res.send(data);
+  });
+
 
 
   const port = process.env.PORT || 3000;
