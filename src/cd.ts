@@ -13,12 +13,62 @@ router.get("/help", (req, res) => {
 });
 
 router.get("/lexical", (req, res) => {
-  const data = fs.readFileSync("./files/cd/lexical.c", "utf8");
+  const data = fs.readFileSync("./files/cd/lexical.cpp", "utf8");
   res.send(data);
 });
 
 router.get("/ff", (req, res) => {
-  const data = fs.readFileSync("./files/cd/firstFollow.c", "utf8");
+  const data = fs.readFileSync("./files/cd/firstFollow.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/tac", (req, res) => {
+  const data = fs.readFileSync("./files/cd/3address.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/am", (req, res) => {
+  const data = fs.readFileSync("./files/cd/ambiguity.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/lt", (req, res) => {
+  const data = fs.readFileSync("./files/cd/leading.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/lf", (req, res) => {
+  const data = fs.readFileSync("./files/cd/lf.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/lr", (req, res) => {
+  const data = fs.readFileSync("./files/cd/lr.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/lr0", (req, res) => {
+  const data = fs.readFileSync("./files/cd/lr0.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/nfa2dfa", (req, res) => {
+  const data = fs.readFileSync("./files/cd/nfa2dfa.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/predictive", (req, res) => {
+  const data = fs.readFileSync("./files/cd/predictive.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/re2nfa", (req, res) => {
+  const data = fs.readFileSync("./files/cd/re2nfa.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/sr", (req, res) => {
+  const data = fs.readFileSync("./files/cd/shift.cpp", "utf8");
   res.send(data);
 });
 
