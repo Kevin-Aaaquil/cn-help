@@ -8,3 +8,7 @@
 $ HELP    -> curl lab.cheeez.xyz/help
 $ HELP CD -> curl lab.cheeez.xyz/cd/help
 $ HELP AI -> curl lab.cheeez.xyz/ai/help
+
+# Lexical Analyzer -> curl cd.cheeez.xyz/lexical
+* First and Follow -> curl cd.cheeez.xyz/ff
+

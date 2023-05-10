@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import fs from "fs";
+import cdRouter from "./cd";
+import aiRouter from "./ai";
 
 (async () => {
   const app = express();
@@ -18,15 +20,9 @@ import fs from "fs";
     res.send(data);
   });
 
-  app.get("/lexical", (req, res) => {
-    const data = fs.readFileSync("./files/lexical.c", "utf8");
-    res.send(data);
-  });
+  app.use("/cd", cdRouter);
+  app.use("/ai", aiRouter);
 
-  app.get("/ff", (req, res) => {
-    const data = fs.readFileSync("./files/firstFollow.c", "utf8");
-    res.send(data);
-  });
 
 
 
