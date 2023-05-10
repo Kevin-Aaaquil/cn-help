@@ -51,4 +51,14 @@ router.get("/fuzzy", (req, res) => {
   const data = fs.readFileSync("./files/ai/fuzzy.py", "utf8");
   res.send(data);
 });
+
+router.get("/u", (req, res) => {
+  const data = fs.readFileSync("./files/ai/unification.py", "utf8");
+  res.send(data);
+});
+
+router.get("/r", (req, res) => {
+  const data = fs.readFileSync("./files/ai/resolution.py", "utf8");
+  res.send(data);
+});
 export default router;

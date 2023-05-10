@@ -17,3 +17,5 @@ $ HELP AI -> curl lab.cheeez.xyz/ai/help
 * Best First Search -> curl lab.cheeez.xyz/ai/bestfs
 # A* Search         -> curl lab.cheeez.xyz/ai/astar
 * Fuzzy Logic       -> curl lab.cheeez.xyz/ai/fuzzy
+# Unification       -> curl lab.cheeez.xyz/ai/u
+* Resolution        -> curl lab.cheeez.xyz/ai/r
