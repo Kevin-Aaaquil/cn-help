@@ -12,7 +12,7 @@ import aiRouter from "./ai";
   app.use(cors());
 
   app.get("/", (req, res) => {
-    res.json({ message: "Hello World" });
+    res.send("Use route /help");
   });
 
   app.get("/help", (req, res) => {

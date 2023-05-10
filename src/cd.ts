@@ -1,7 +1,11 @@
-import {Router} from "express";
+import { Router } from "express";
 import fs from "fs";
 
 const router = Router();
+
+router.get("/", (req, res) => {
+  res.send("Use route /help");
+});
 
 router.get("/help", (req, res) => {
   const data = fs.readFileSync("./files/cd/help.txt", "utf8");
