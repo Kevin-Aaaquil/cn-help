@@ -61,4 +61,19 @@ router.get("/r", (req, res) => {
   const data = fs.readFileSync("./files/ai/resolution.py", "utf8");
   res.send(data);
 });
+
+router.get("/dl", (req, res) => {
+  const data = fs.readFileSync("./files/ai/dl.py", "utf8");
+  res.send(data);
+});
+
+router.get("/nlp", (req, res) => {
+  const data = fs.readFileSync("./files/ai/nlp.py", "utf8");
+  res.send(data);
+});
+
+router.get("/svm", (req, res) => {
+  const data = fs.readFileSync("./files/ai/svm.py", "utf8");
+  res.send(data);
+});
 export default router;

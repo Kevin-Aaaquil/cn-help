@@ -19,3 +19,6 @@ $ HELP AI -> curl lab.cheeez.xyz/ai/help
 * Fuzzy Logic       -> curl lab.cheeez.xyz/ai/fuzzy
 # Unification       -> curl lab.cheeez.xyz/ai/u
 * Resolution        -> curl lab.cheeez.xyz/ai/r
+# Deep Learning     -> curl lab.cheeez.xyz/ai/dl
+* NLP               -> curl lab.cheeez.xyz/ai/nlp
+# SVM Learning Model-> curl lab.cheeez.xyz/ai/svm
