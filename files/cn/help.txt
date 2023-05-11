@@ -8,3 +8,22 @@
 $ HELP    -> curl lab.cheeez.xyz/help
 $ HELP CD -> curl lab.cheeez.xyz/cd/help
 $ HELP AI -> curl lab.cheeez.xyz/ai/help
+
+
+* CLIENT SERVER COMMUNICATION CLIENT -> curl lab.cheeez.xyz/cn/cscc
+# CLIENT SERVER COMMUNICATION SERVER -> curl lab.cheeez.xyz/cn/cscs
+* PING CLIENT                        -> curl lab.cheeez.xyz/cn/pingc
+# PING SERVER                        -> curl lab.cheeez.xyz/cn/pings
+* SOCKET WEB UPLOAD CLIENT           -> curl lab.cheeez.xyz/cn/webc
+# SOCKET WEB UPLOAD SERVER           -> curl lab.cheeez.xyz/cn/webs
+* CRC                                -> curl lab.cheeez.xyz/cn/crc
+* STOP WAIT CLIENT                   -> curl lab.cheeez.xyz/cn/swc
+# STOP WAIT SERVER                   -> curl lab.cheeez.xyz/cn/sws
+* SLIDING WINDOW CLIENT              -> curl lab.cheeez.xyz/cn/slidingc
+# SLIDING WINDOW SERVER              -> curl lab.cheeez.xyz/cn/slidings
+* ARP CLIENT                         -> curl lab.cheeez.xyz/cn/arpc
+# ARP SERVER                         -> curl lab.cheeez.xyz/cn/arps
+* RARP CLIENT                        -> curl lab.cheeez.xyz/cn/rarpc
+# RARP SERVER                        -> curl lab.cheeez.xyz/cn/rarps
+* TCP ECHO CLIENT                    -> curl lab.cheeez.xyz/cn/tcpc
+# TCP ECHO SERVER                    -> curl lab.cheeez.xyz/cn/tcps
