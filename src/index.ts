@@ -3,6 +3,7 @@ import cors from "cors";
 import fs from "fs";
 import cdRouter from "./cd";
 import aiRouter from "./ai";
+import cnRouter from "./cn";
 
 (async () => {
   const app = express();
@@ -22,9 +23,7 @@ import aiRouter from "./ai";
 
   app.use("/cd", cdRouter);
   app.use("/ai", aiRouter);
-
-
-
+  app.use("/cn", cnRouter);
 
   const port = process.env.PORT || 3000;
 

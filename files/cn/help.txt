@@ -1,0 +1,10 @@
+^
+^ To download output into a file instead of viewing it on terminal use the following command:
+^
+^ curl lab.cheeez.xyz/cd/lexical -o lexical.c
+^
+^ This will download the content of the file into a file named client.py
+
+$ HELP    -> curl lab.cheeez.xyz/help
+$ HELP CD -> curl lab.cheeez.xyz/cd/help
+$ HELP AI -> curl lab.cheeez.xyz/ai/help
