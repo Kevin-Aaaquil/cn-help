@@ -72,4 +72,24 @@ router.get("/sr", (req, res) => {
   res.send(data);
 });
 
+router.get("/dag", (req, res) => {
+  const data = fs.readFileSync("./files/cd/dag.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/i2p", (req, res) => {
+  const data = fs.readFileSync("./files/cd/infix2postfix.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/p2p", (req, res) => {
+  const data = fs.readFileSync("./files/cd/postfix2prefix.cpp", "utf8");
+  res.send(data);
+});
+
+router.get("/simp", (req, res) => {
+  const data = fs.readFileSync("./files/cd/simpCodeGen.cpp", "utf8");
+  res.send(data);
+});
+
 export default router;

@@ -21,4 +21,7 @@ $ HELP AI -> curl lab.cheeez.xyz/ai/help
 * Predictive                -> curl lab.cheeez.xyz/predictive
 # RE 2 NFA                  -> curl lab.cheeez.xyz/re2nfa
 * Shift Reduce Parsing      -> curl lab.cheeez.xyz/sr
-
+# DAG                       -> curl lab.cheeez.xyz/dag
+* Infix 2 Postfix           -> curl lab.cheeez.xyz/i2p
+# Postfix 2 Prefix          -> curl lab.cheeez.xyz/p2p
+* Simple Code Generator     -> curl lab.cheeez.xyz/simp
