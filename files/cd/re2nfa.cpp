@@ -1,230 +1,76 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
-class node{
-public:
-	map<char,vector<node*>> input;
-};
-
-vector<node*> node_tracker;
-
-int prec(char c){
-	if(c=='*' || c=='+'){
-		return 3;
-	}else if(c=='.'){
-		return 2;
-	}else if(c=='|'){
-		return 1;
-	}else{
-		return -1;
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char reg[20]; int q[20][3],i=0,j=1,len,a,b;
+	printf("Enter the regular expression: ");
+	for (a = 0; a < 20; a++)
+		for (b = 0; b < 3; b++)
+			q[a][b] = 0;
+	scanf("%s",reg);
+	printf("Given regular expression: %s\n",reg);
+	len=strlen(reg);
+	while(i<len)
+	{
+		if(reg[i]=='a'&&reg[i+1]!='|'&&reg[i+1]!='*') { q[j][0]=j+1; j++; }
+		if(reg[i]=='b'&&reg[i+1]!='|'&&reg[i+1]!='*') {	q[j][1]=j+1; j++;	}
+		if(reg[i]=='e'&&reg[i+1]!='|'&&reg[i+1]!='*') {	q[j][2]=j+1; j++;	}
+		if(reg[i]=='a'&&reg[i+1]=='|'&&reg[i+2]=='b') 
+		{ 
+		  q[j][2]=((j+1)*10)+(j+3); j++; 
+		  q[j][0]=j+1; j++;
+			q[j][2]=j+3; j++;
+			q[j][1]=j+1; j++;
+			q[j][2]=j+1; j++;
+			i=i+2;
+		}
+		if(reg[i]=='b'&&reg[i+1]=='|'&&reg[i+2]=='a')
+		{
+			q[j][2]=((j+1)*10)+(j+3); j++;
+			q[j][1]=j+1; j++;
+			q[j][2]=j+3; j++;
+			q[j][0]=j+1; j++;
+			q[j][2]=j+1; j++;
+			i=i+2;
+		}
+		if(reg[i]=='a'&&reg[i+1]=='*')
+		{
+			q[j][2]=((j+1)*10)+(j+3); j++;
+			q[j][0]=j+1; j++;
+			q[j][2]=((j+1)*10)+(j-1); j++;
+		}
+		if(reg[i]=='b'&&reg[i+1]=='*')
+		{
+			q[j][2]=((j+1)*10)+(j+3); j++;
+			q[j][1]=j+1; j++;
+			q[j][2]=((j+1)*10)+(j-1); j++;
+		}
+		if(reg[i]==')'&&reg[i+1]=='*')
+		{
+			q[0][2]=((j+1)*10)+1;
+			q[j][2]=((j+1)*10)+1;
+			j++;
+		}
+		i++;
 	}
-}
-
-string preprocess(string &s){
-    string ns = "";
-    for(int i=0;i<s.size();i++){
-        char c = s[i];
-        if(c=='+'){
-            string str = "";
-            if(s[i-1]==')'){
-                for(int j=i-1;s[j]!='(';j--){
-                    str = s[j]+str;
-                }
-                str = "("+str;
-            }
-            else{
-                str +=s[i-1];
-            }
-            s = s.substr(0,i)+"."+str+"*"+s.substr(i+1);
-            
-        }
-    }
-    cout<<"PreProcessed RE:"<<s<<"\n";
-    return s;
-    
-}
-
-string post(string s) 
-{ 
-    stack<char> st; 
-    st.push('N'); 
-    int l = s.length(); 
-    string ns; 
-    for(int i = 0; i < l; i++) 
-    {
-        if((s[i] >= 'a' && s[i] <= 'z')||(s[i] >= 'A' && s[i] <= 'Z')){
-	        ns+=s[i]; 
-        }
-
-        else if(s[i] == '('){          
-	        st.push('('); 
-        }
-        else if(s[i] == ')') 
-        { 
-            while(st.top() != 'N' && st.top() != '(') 
-            { 
-                char c = st.top(); 
-                st.pop(); 
-               ns += c; 
-            } 
-            if(st.top() == '(') 
-            { 
-                char c = st.top(); 
-                st.pop(); 
-            } 
-        } 
-        else{ 
-            while(st.top() != 'N' && prec(s[i]) <= prec(st.top())) 
-            { 
-                char c = st.top(); 
-                st.pop(); 
-                ns += c; 
-            } 
-            st.push(s[i]); 
-        } 
-  
-    } 
-    while(st.top() != 'N') 
-    { 
-        char c = st.top(); 
-        st.pop(); 
-        ns += c; 
-    } 
-return ns;
-}
-
-void printnode(vector<node*> node_tracker,vector<vector<node*>> st){
-	cout<<"___________________________________________"<<endl;
-	cout<<"| from state\t| input\t| tostates"<<endl;
-	
-	map<node*,int> mp;
-	for(int i=0;i<node_tracker.size();i++){
-	    mp[node_tracker[i]]=i;
-	}
-	int num =0;
-	
-	for(int i=0;i<node_tracker.size();i++){
-		
-		
-		for(auto transition:node_tracker[i]->input){
-		    cout<<"| "<<i<<"          \t|";
-		    cout<<transition.first<<" \t|";
-		    for(node* temp:transition.second){
-		        cout<<mp[temp]<<" ";
-		    }
-		    cout<<"\n";
+	printf("\n\tTransition Table \n");
+	printf("_____________\n");
+	printf("Current State |\tInput |\tNext State");
+	printf("\n_____________\n");
+	for(i=0;i<=j;i++)
+	{
+		if(q[i][0]!=0) printf("\n  q[%d]\t      |   a   |  q[%d]",i,q[i][0]);
+		if(q[i][1]!=0) printf("\n  q[%d]\t      |   b   |  q[%d]",i,q[i][1]);
+		if(q[i][2]!=0) 
+		{
+			if(q[i][2]<10) printf("\n  q[%d]\t      |   e   |  q[%d]",i,q[i][2]);
+			else printf("\n  q[%d]\t      |   e   |  q[%d] , q[%d]",i,q[i][2]/10,q[i][2]%10);
 		}
 	}
-	cout<<"starting node is ";
-	cout<<mp[st[0][0]]<<endl;
-	cout<<"ending node is ";
-	cout<<mp[st[0][1]]<<endl;
-}
-
-
-
-vector<node*> makenode(char in){
-	node* a = new node;
-	node* b = new node;
-	node_tracker.push_back(a);
-	node_tracker.push_back(b);
-
-	a->input[in].push_back(b);
-
-	return {a,b};
-}
-
-void andd(vector<vector<node*> > &st){
-
-	node* first = st[st.size()-2][1];
-	node* last = st[st.size()-1][0];
-	
-	first->input['e'].push_back(last);
-	
-	first = st[st.size()-2][0];
-	last = st[st.size()-1][1];
-	
-	st.pop_back();
-	st.pop_back();
-	
-	st.push_back({first,last});
-
-	
-}
-
-void orr(vector<vector<node*> > &st){
-	
-	node* start = new node;
-	node_tracker.push_back(start);
-	start->input['e'].push_back(st[st.size()-2][0]);
-	start->input['e'].push_back(st[st.size()-1][0]);
-	
-	node* end = new node;
-	node_tracker.push_back(end);
-	st[st.size()-1][1]->input['e'].push_back(end);
-	st[st.size()-2][1]->input['e'].push_back(end);
-
-	st.pop_back();
-	st.pop_back();
-
-    st.push_back({start,end});
-
-}
-
-void closure(vector<vector<node*> > &st){
-	
-	node* start = new node;
-	node* end = new node;
-	node_tracker.push_back(start);
-	node_tracker.push_back(end);
-	
-	start->input['e'].push_back(st[st.size()-1][0]);
-	start->input['e'].push_back(end);
-	
-	st[st.size()-1][1]->input['e'].push_back(st[st.size()-1][0]);
-	st[st.size()-1][1]->input['e'].push_back(end);
-	
-	st.pop_back();
-	st.push_back({start,end});
-	
-}
-
-int main(){
-	string in;
-	cout<<"Enter a regular expression\n";
-	cin>>in;
-	string o;
-	in = preprocess(in);
-	o = post(in);
-	cout<<"\npostfix expression is "<< o<<endl;
-	vector<vector<node*>> st;
-
-	for(int l =0 ;l<o.length();l++){
-		if(o[l] !='|' && o[l]!='*' && o[l]!='.' && o[l]!='+'){
-			vector<node*> temp = makenode(o[l]);
-			st.push_back(temp);
-		}
-		else if(o[l]=='.'){
-			andd(st);
-		}
-		else if(o[l]=='|'){
-			orr(st);
-		}
-		else if(o[l]=='*'){
-			closure(st);
-		}
-		else if(o[l]=='+'){
-			vector<node*> temp = st[st.size()-1];
-			closure(st);
-			st.push_back(temp);
-			andd(st);
-		}
-		
-	}
-	cout<<"\ntrainsition table for given regular expression is - \n";
-	printnode(node_tracker,st);
-	cout<<endl;
-	
+	printf("\n_____________\n");
 	return 0;
 }
+
+// Input 
+
+// (a|b)*abb

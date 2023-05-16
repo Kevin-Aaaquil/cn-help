@@ -1,5 +1,4 @@
 #include<iostream>
-#include<conio.h>
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -157,3 +156,35 @@ int main()
 	display();
 
 }
+
+// LEADING AND TRAILING
+
+// Enter the no. of variables : 3
+// Enter the variables : 
+// E
+// T
+// F
+// Enter the no. of terminals : 5
+// Enter the terminals : )
+// (
+// *
+// +
+// i
+// PRODUCTION DETAILS
+
+// Enter the no. of production of E:2
+// E->E+T
+// E->T
+// Enter the no. of production of T:2
+// T->T*F
+// T->F
+// Enter the no. of production of F:2
+// F->(E)
+// F->i
+// LEADING(E) = (,*,+,i,
+// LEADING(T) = (,*,i,
+// LEADING(F) = (,i,
+
+// TRAILING(E) = ),*,+,i,
+// TRAILING(T) = ),*,i,
+// TRAILING(F) = ),i,

@@ -1,59 +1,107 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
+
 int main()
-{  string ip,op1,op2,temp;
-    int sizes[10] = {};
-    char c;
-    int n,j,l;
-    cout<<"Enter the Parent Non-Terminal : ";
-    cin>>c;
-    ip.push_back(c);
-    op1 += ip + "\'->";
-    ip += "->";
-    op2+=ip;
-    cout<<"Enter the number of productions : ";
-    cin>>n;
-    for(int i=0;i<n;i++)
-    {   cout<<"Enter Production "<<i+1<<" : ";
-        cin>>temp;
-        sizes[i] = temp.size();
-        ip+=temp;
-        if(i!=n-1)
-            ip += "|";
-    }
-    cout<<"Production Rule : "<<ip<<endl;
-    for(int i=0,k=3;i<n;i++)
+{
+    int n;
+    cout << "\nEnter number of non terminals: ";
+    cin >> n;
+    cout << "\nEnter non terminals one by one: ";
+    int i;
+    vector<string> nonter(n);
+    vector<int> leftrecr(n, 0);
+    for (i = 0; i < n; ++i)
     {
-        if(ip[0] == ip[k])
+        cout << "\nNon terminal " << i + 1 << " : ";
+        cin >> nonter[i];
+    }
+    vector<vector<string> > prod;
+    cout << "\nEnter 'esp' for null";
+    for (i = 0; i < n; ++i)
+    {
+        cout << "\nNumber of " << nonter[i] << " productions: ";
+        int k;
+        cin >> k;
+        int j;
+        cout << "\nOne by one enter all " << nonter[i] << " productions";
+        vector<string> temp(k);
+        for (j = 0; j < k; ++j)
         {
-            cout<<"Production "<<i+1<<" has left recursion."<<endl;
-            if(ip[k] != '#')
-            {
-                for(l=k+1;l<k+sizes[i];l++)
-                    op1.push_back(ip[l]);
-                k=l+1;
-                op1.push_back(ip[0]);
-                op1 += "\'|";
-            }
+            cout << "\nRHS of production " << j + 1 << ": ";
+            string abc;
+            cin >> abc;
+            temp[j] = abc;
+            if (nonter[i].length() <= abc.length() && nonter[i].compare(abc.substr(0, nonter[i].length())) == 0)
+                leftrecr[i] = 1;
         }
-        else
+        prod.push_back(temp);
+    }
+    for (i = 0; i < n; ++i)
+    {
+        cout << leftrecr[i];
+    }
+    for (i = 0; i < n; ++i)
+    {
+        if (leftrecr[i] == 0)
+            continue;
+        int j;
+        nonter.push_back(nonter[i] + "'");
+        vector<string> temp;
+        for (j = 0; j < prod[i].size(); ++j)
         {
-            cout<<"Production "<<i+1<<" does not have left recursion."<<endl;
-            if(ip[k] != '#')
+            if (nonter[i].length() <= prod[i][j].length() && nonter[i].compare(prod[i][j].substr(0, nonter[i].length())) == 0)
             {
-                for(j=k;j<k+sizes[i];j++)
-                    op2.push_back(ip[j]);
-                k=j+1;
-                op2.push_back(ip[0]);
-                op2 += "\'|";
+                string abc = prod[i][j].substr(nonter[i].length(), prod[i][j].length() - nonter[i].length()) + nonter[i] + "'";
+                temp.push_back(abc);
+                prod[i].erase(prod[i].begin() + j);
+                --j;
             }
             else
             {
-                op2.push_back(ip[0]);
-                op2 += "\'";
-            }}}
-    op1 += "#";
-    cout<<op2<<endl;
-    cout<<op1<<endl;
-    return 0;}
+                prod[i][j] += nonter[i] + "'";
+            }
+        }
+        temp.push_back("esp");
+        prod.push_back(temp);
+    }
+    cout << "\n\n";
+    cout << "\nNew set of non-terminals: ";
+    for (i = 0; i < nonter.size(); ++i)
+        cout << nonter[i] << " ";
+    cout << "\n\nNew set of productions: ";
+    for (i = 0; i < nonter.size(); ++i)
+    {
+        int j;
+        for (j = 0; j < prod[i].size(); ++j)
+        {
+            cout << "\n"
+                 << nonter[i] << " -> " << prod[i][j];
+        }
+    }
+    return 0;
+}
+
+// Sample Input
+
+// Enter number of non terminals: 3
+
+// Enter non terminals one by one:
+// Non terminal 1: A
+// Non terminal 2: B
+// Non terminal 3: C
+
+// Enter 'esp' for null
+// Number of A productions: 2
+// One by one enter all A productions
+// RHS of production 1: BCD
+// RHS of production 2: BC
+
+// Number of B productions: 1
+// One by one enter all B productions
+// RHS of production 1: AC
+
+// Number of C productions: 1
+// One by one enter all C productions
+// RHS of production 1: a

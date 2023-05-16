@@ -1,53 +1,89 @@
-#include<stdio.h>
+#include<iostream>
+#include<cstring>
 #include<stdlib.h>
-#include<string.h>
 #include<ctype.h>
- 
-int isKeyword(char buffer[]){
-char keywords[32][10] = {"auto","break","case","char","const","continue","default",
-"do","double","else","enum","extern","float","for","goto",
-"if","int","long","register","return","short","signed",
-"sizeof","static","struct","switch","typedef","union",
-"unsigned","void","volatile","while"};
-int i, flag = 0;
-for(i = 0; i < 32; ++i){
-if(strcmp(keywords[i], buffer) == 0){
-flag = 1;
-break;
+#include<fstream>
+using namespace std;
+
+string arr[] = { "void", "using", "namespace", "int", "include", "iostream", "std", "main",
+"cin", "cout", "return", "float", "double", "string" };
+
+bool
+isKeyword (string a)
+{
+  for (int i = 0; i < 14; i++)
+    {
+      if (arr[i] == a)
+	{
+	  return true;
+	}
+    }
+  return false;
 }
-}
-return flag;
-}
- 
-int main(){
-char ch, buffer[15], operators[] = "+-*/%=";
-FILE *fp;
-int i,j=0;
-fp = fopen("program.txt","r");
-if(fp == NULL){
-printf("error while opening the file\n");
-exit(0);
-}
-while((ch = fgetc(fp)) != EOF){
-   for(i = 0; i < 6; ++i){
-   if(ch == operators[i])
-   printf("%c is operator\n", ch);
-   }
-  
-   if(isalnum(ch)){
-   buffer[j++] = ch;
-   }
-   else if((ch == ' ' || ch == '\n') && (j != 0)){
-   buffer[j] = '\0';
-   j = 0;
-     
-   if(isKeyword(buffer) == 1)
-   printf("%s is keyword\n", buffer);
-   else
-   printf("%s is indentifier\n", buffer);
-   }
-  
-}
-fclose(fp);
-return 0;
-}
+
+int main() 
+{ 
+
+	string s; 
+
+	cout << "Enter the input: \n";
+	cout << "\n";
+
+	while (cin >> s)
+	{
+        if (s == "+" || s == "-" || s == "" || s == "/" || s == "^" || s == "&&" || s == "||" || s == "=" || s == "==" || s == "&" || s == "|" || s == "%" || s == "++" || s == "--" || s == "+=" || s == "-=" || s == "/=" || s == "=" || s == "%=")
+	    {
+	      cout << s << " is an operator\n";
+	      s = "";
+	    }
+	  else if (isKeyword (s))
+	    {
+	      cout << s << " is a keyword\n";
+	      s = "";
+	    }
+	  else if (s == "(" || s == "{" || s == "[" || s == ")" || s == "}" || s == "]" || s == "<" || s == ">" || s == "()" || s == ";" || s == "<<" || s == ">>" || s == "," || s == "#")
+	    {
+	      cout << s << " is a symbol\n";
+	      s = "";
+
+	    }
+	  else if (s == "\n" || s == " " || s == "")
+	    {
+	      s = "";
+
+	    }
+	  else if (isdigit (s[0]))
+	    {
+	      int x = 0;
+	      if (!isdigit (s[x++]))
+		{
+		  continue;
+		}
+	      else
+		{
+		  cout << s << " is a constant\n";
+		  s = "";
+		}
+	    }
+	  else
+	    {
+	      cout << s << " is an identifier\n";
+	      s = "";
+	    } 
+	} 
+
+	return 0; 
+} 
+
+// Input for the code
+
+// #include <stdio.h>
+
+// void main ( )
+
+// {
+//     int x = 6 ;
+//     int y = 4 ;
+//     x = x + y ;
+//     printf("%d", x);
+// }
