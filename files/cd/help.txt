@@ -9,16 +9,16 @@ $ HELP    -> curl lab.cheeez.xyz/help
 $ HELP CD -> curl lab.cheeez.xyz/cd/help
 $ HELP AI -> curl lab.cheeez.xyz/ai/help
 
-# Lexical Analyzer          -> curl cd.cheeez.xyz/lexical
-* First and Follow          -> curl cd.cheeez.xyz/ff
-# Three Address             -> curl cd.cheeez.xyz/tac
-* Ambiguity                 -> curl cd.cheeez.xyz/am
-# Leading&Trailing          -> curl cd.cheeez.xyz/lt
-* Left Factoring            -> curl cd.cheeez.xyz/lf
-# Left Recursion            -> curl cd.cheeez.xyz/lr
-* LR0                       -> curl cd.cheeez.xyz/lr0
-# NFA 2 DFA                 -> curl cd.cheeez.xyz/nfa2dfa
-* Predictive                -> curl cd.cheeez.xyz/predictive
-# RE 2 NFA                  -> curl cd.cheeez.xyz/re2nfa
-* Shift Reduce Parsing      -> curl cd.cheeez.xyz/sr
+# Lexical Analyzer          -> curl lab.cheeez.xyz/lexical
+* First and Follow          -> curl lab.cheeez.xyz/ff
+# Three Address             -> curl lab.cheeez.xyz/tac
+* Ambiguity                 -> curl lab.cheeez.xyz/am
+# Leading&Trailing          -> curl lab.cheeez.xyz/lt
+* Left Factoring            -> curl lab.cheeez.xyz/lf
+# Left Recursion            -> curl lab.cheeez.xyz/lr
+* LR0                       -> curl lab.cheeez.xyz/lr0
+# NFA 2 DFA                 -> curl lab.cheeez.xyz/nfa2dfa
+* Predictive                -> curl lab.cheeez.xyz/predictive
+# RE 2 NFA                  -> curl lab.cheeez.xyz/re2nfa
+* Shift Reduce Parsing      -> curl lab.cheeez.xyz/sr
 
